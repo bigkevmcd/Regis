@@ -64,7 +64,7 @@ ERConference >> addAttendee: anAttendee [
 
 { #category : #adding }
 ERConference >> addGroup: aGroup [
-	groups add: aGroup 
+	groups add: aGroup
 ]
 
 { #category : #adding }
@@ -74,7 +74,7 @@ ERConference >> addNewAttendee: anAttendee [
 
 { #category : #adding }
 ERConference >> addNewUser: anUser [
-	users add: anUser 
+	users add: anUser
 ]
 
 { #category : #adding }
@@ -106,7 +106,7 @@ ERConference >> addSubmittedTalk: aSubmittedTalk [
 
 { #category : #search }
 ERConference >> attendeeFromUser: anUser [
-	^ attends detect: [ :each | 
+	^ attends detect: [ :each |
 					each userAccount = anUser ]
 				 ifNone: [ ERException notFoundAttendeeFromUser signal ]
 ]
@@ -118,13 +118,13 @@ ERConference >> attendeesForATicket: ticketId [
 
 { #category : #search }
 ERConference >> attendeesForATicket: ticket except: anAttendee [
-	^ self attends select: [ :each |  
+	^ self attends select: [ :each |
 		each paymentInformation coupon = ticket ticketId and: [ each ~= anAttendee ] ]
 ]
 
 { #category : #accessing }
 ERConference >> attendeesWhoDidNotPaid [
-	^ attends reject: [ :each | each paymentInformation hasPaid ] 
+	^ attends reject: [ :each | each paymentInformation hasPaid ]
 ]
 
 { #category : #accessing }
@@ -267,19 +267,19 @@ ERConference >> dictionaryForLunch [
 
 { #category : #configurationStatistics }
 ERConference >> dictionaryOfFoodPreference [
-	^ Dictionary new 	
+	^ Dictionary new
 		at: 'Vegan' put: 0;
 		at: 'Normal' put: 0;
 		at: 'Vegetarian' put: 0;
-		yourself 
+		yourself
 ]
 
 { #category : #configurationStatistics }
 ERConference >> dictionaryOfShirts [
 	|dict|
 	dict := OrderedDictionary new.
-	ERRegisterConferenceInformation tShirtSizes do: [ :each | dict at: each put: 
-		(Dictionary new at: 'Male' put: 0; 
+	ERRegisterConferenceInformation tShirtSizes do: [ :each | dict at: each put:
+		(Dictionary new at: 'Male' put: 0;
 		at: 'Female' put: 0; yourself) ].
 	^ dict
 ]
@@ -293,12 +293,12 @@ ERConference >> existReductionTicketWithName: aString [
 ERConference >> exportAttends: fileName [
 	| cvs |
 	cvs := String
-		streamContents: [ :out | 
+		streamContents: [ :out |
 			| neoWriter |
 			neoWriter := NeoCSVWriter on: out.
 			neoWriter writeHeader: self headerAttendee.
-			self attends 
-				do: [ :each | 
+			self attends
+				do: [ :each |
 					neoWriter
 						nextPut:
 							{ each paymentInformation invoiceNumber.
@@ -329,11 +329,11 @@ ERConference >> exportAttends: fileName [
 ERConference >> exportAttends: list in: fileName [
 	| cvs |
 	cvs := String
-		streamContents: [ :out | 
+		streamContents: [ :out |
 			| neoWriter |
 			neoWriter := NeoCSVWriter on: out.
 			neoWriter writeHeader: self headerAttendee.
-			list do: [ :each | 
+			list do: [ :each |
 					neoWriter
 						nextPut:
 							{ each paymentInformation invoiceNumber.
@@ -365,12 +365,12 @@ ERConference >> exportAwards: fileName [
 
 	|  cvs |
 	cvs := String
-		streamContents: [ :out | 
+		streamContents: [ :out |
 			| neoWriter |
 			neoWriter := NeoCSVWriter on: out.
 			neoWriter writeHeader: self hearderAwards.
 			self submittedAwards
-				do: [ :each | 
+				do: [ :each |
 					neoWriter
 						nextPut:
 					{each nameAward.
@@ -392,12 +392,12 @@ ERConference >> exportAwards: fileName [
 ERConference >> exportGroupManagers: fileName [
 	|  cvs |
 	cvs := String
-		streamContents: [ :out | 
+		streamContents: [ :out |
 			| neoWriter |
 			neoWriter := NeoCSVWriter on: out.
 			neoWriter writeHeader: self headerGroups.
 			self groups
-				do: [ :each | 
+				do: [ :each |
 					neoWriter
 						nextPut:
 							{each paymentInformation invoiceNumber.
@@ -419,12 +419,12 @@ ERConference >> exportGroupManagers: fileName [
 ERConference >> exportTalks: fileName [
 	| cvs |
 	cvs := String
-		streamContents: [ :out | 
+		streamContents: [ :out |
 			| neoWriter |
 			neoWriter := NeoCSVWriter on: out.
 			neoWriter writeHeader: self headerTalks.
 			self submittedTalks
-				do: [ :each | neoWriter 
+				do: [ :each | neoWriter
 				nextPut:
 					{ each title.
 					(each submitter userAccount firstName, ' ', each submitter userAccount lastName).
@@ -442,12 +442,12 @@ ERConference >> exportTalks: fileName [
 ERConference >> exportUsers: fileName [
 	| cvs |
 	cvs := String
-		streamContents: [ :out | 
+		streamContents: [ :out |
 			| neoWriter |
 			neoWriter := NeoCSVWriter on: out.
 			neoWriter writeHeader: self headerUser.
 			self users
-				do: [ :each | 
+				do: [ :each |
 					neoWriter
 						nextPut:
 							{each id.
@@ -471,8 +471,8 @@ ERConference >> fee: anObject [
 
 { #category : #filtering }
 ERConference >> filterAttendsBy: aSymbol matchesWith: aString [
-	^ self attends select: 
-		[ :att | (att userAccount perform: aSymbol) asLowercase 
+	^ self attends select:
+		[ :att | (att userAccount perform: aSymbol) asLowercase
 		includesSubstring: aString asLowercase ]
 
 ]
@@ -510,9 +510,9 @@ ERConference >> flat: dictionary with: aString [
 
 { #category : #search }
 ERConference >> getGroupOfAttendee: aAttendee [
-	^ aAttendee idGroup 
-	ifNotNil: [ self groups 
-		detect: [ :aGroup | aGroup id = aAttendee idGroup ] 
+	^ aAttendee idGroup
+	ifNotNil: [ self groups
+		detect: [ :aGroup | aGroup id = aAttendee idGroup ]
 		ifNone: [ nil ] ].
 ]
 
@@ -539,7 +539,7 @@ ERConference >> headerAttendee [
 
 { #category : #header }
 ERConference >> headerGroups [
-	^ #('Invoice Number' 'Group Manager Name' 'Group Manager Email' 'Org. Name' 'Org. Address1' 
+	^ #('Invoice Number' 'Group Manager Name' 'Group Manager Email' 'Org. Name' 'Org. Address1'
 	'Org. City' 'Org. Country' 'Org. Postal' 'Org. Membership' 'Attendees Registered' 'Payment Status')
 ]
 
@@ -559,8 +559,8 @@ ERConference >> headersParticipantsToLunches [
 ]
 
 { #category : #header }
-ERConference >> headersParticipantsToSocialDinner [ 
-	^ { 'Normal' . 'Vegetarian' . 'Vegan' . 'Total' }	
+ERConference >> headersParticipantsToSocialDinner [
+	^ { 'Normal' . 'Vegetarian' . 'Vegan' . 'Total' }
 ]
 
 { #category : #header }
@@ -600,14 +600,14 @@ ERConference >> invoiceNumber [
 
 { #category : #accessing }
 ERConference >> invoices [
-	^ (self groups), 
-	(self attends 
+	^ (self groups),
+	(self attends
 		select: [ :each | each idGroup isNil ])
 ]
 
 { #category : #action }
 ERConference >> isEarlyRegistrationOf: anAttendee [
-	^ self configuration earlyRegistrationDeadline 
+	^ self configuration earlyRegistrationDeadline
 		asDate > anAttendee createdOn asDate
 ]
 
@@ -660,10 +660,10 @@ ERConference >> paymentToString: aBoolean [
 ERConference >> priceAccordingToAttendanceDaysOf: anAttendee [
 	|daysOfAssistance |
 	daysOfAssistance := anAttendee daysOfAssistance.
-	(daysOfAssistance < 5) ifTrue: 
+	(daysOfAssistance < 5) ifTrue:
 		[ ^ self priceForNDays: daysOfAssistance of: anAttendee ].
 	^ self priceForAllDaysOf: anAttendee
-	
+
 ]
 
 { #category : #action }
@@ -675,15 +675,15 @@ ERConference >> priceForAllDaysOf: anAttendee [
 
 { #category : #action }
 ERConference >> priceForNDays: aNumber of: anAttendee [
-	(self isEarlyRegistrationOf: anAttendee) 
+	(self isEarlyRegistrationOf: anAttendee)
 		ifTrue: [ ^ fee erfOneDayFee * aNumber ].
-		^ fee lrfOneDayFee * aNumber 
+		^ fee lrfOneDayFee * aNumber
 ]
 
 { #category : #search }
 ERConference >> reductionTicketAlreadyExist: aReductionTicket [
 	self reductionTickets
-		do: [ :each | 
+		do: [ :each |
 			aReductionTicket ticketId = each ticketId
 				ifTrue: [ each = aReductionTicket ifFalse: [
 						ERException ticketWithIdAlreadyExist signal ] ] ]
@@ -691,9 +691,9 @@ ERConference >> reductionTicketAlreadyExist: aReductionTicket [
 
 { #category : #search }
 ERConference >> reductionTicketWithName: aString [
-	[ ^ self reductionTickets detect: [ :each | 
+	[ ^ self reductionTickets detect: [ :each |
 			each ticketId = aString] ]
-	on: NotFound 
+	on: NotFound
 	do: [ ERException invalidTicketId
 		signal ]
 ]
@@ -736,11 +736,11 @@ ERConference >> statisticsOfLuch [
 	|dict|
 	dict := self dictionaryForLunch.
 	self attends do: [ :att |
-		dict := att conferenceInformation addMyPreferenceForLuchTo: dict ].
-	dict := self flat: dict with: 'Day'. 
+		dict := att conferenceInformation addMyPreferenceForLunchTo: dict ].
+	dict := self flat: dict with: 'Day'.
 	dict := self sumEachRowOf: dict.
 	dict := self sumEachColumnOf: dict withHeader: self headersParticipantsToLunches .
-	^ dict 
+	^ dict
 ]
 
 { #category : #configurationStatistics }
@@ -801,7 +801,7 @@ ERConference >> sumEachColumnOf: aList withHeader: header [
 	|dict|
 	dict := Dictionary new.
 	dict at: header first put: 'Total'.
-	header do: [ :aString | aString = header first 
+	header do: [ :aString | aString = header first
 		ifFalse: [ dict at: aString put: (aList collect: [ :each | each at: aString ])sum ] ].
 	aList add: dict.
 	^ aList
@@ -809,7 +809,7 @@ ERConference >> sumEachColumnOf: aList withHeader: header [
 
 { #category : #configurationStatistics }
 ERConference >> sumEachRowOf: aList [
-	aList do: [ :li | li at: 'Total' put: 
+	aList do: [ :li | li at: 'Total' put:
 		(li select: [ :each | each isString not ]) sum  ].
 	^ aList
 ]
@@ -835,7 +835,7 @@ ERConference >> users: anObject [
 ERConference >> validateIfEmailIsAlreadyRegistered: anUser [
 
 	self users
-		do: [ :each | 
+		do: [ :each |
 			each email = anUser email
 				ifTrue: [ each = anUser ifFalse: [
 					ERException emailAlreadyRegistered signal ] ] ].
@@ -843,8 +843,8 @@ ERConference >> validateIfEmailIsAlreadyRegistered: anUser [
 
 { #category : #validations }
 ERConference >> validateIfTicketIDIsAlreadyRegistered: aTicket [
-	reductionTickets 
-		do: [ :each | 
+	reductionTickets
+		do: [ :each |
 			each ticketId = aTicket ticketId
 				ifTrue: [ each = aTicket ifFalse: [
 					ERException ticketIdAlreadyRegistered signal ] ] ]
@@ -852,15 +852,15 @@ ERConference >> validateIfTicketIDIsAlreadyRegistered: aTicket [
 
 { #category : #validations }
 ERConference >> validateLoginFor: aString1 password: aString2 [
-	^ users detect: [:each | each email = aString1 and: [each password = aString2]] 
+	^ users detect: [:each | each email = aString1 and: [each password = aString2]]
 			ifNone: [ nil ]
-	
+
 ]
 
 { #category : #validations }
 ERConference >> verifyIfTicket: ticket canApplyTo: anAttendee [
 	ticket limitStrategyIsUnlimited ifTrue: [ ^ true ].
-	ticket limitStrategyIsLimited ifTrue: 
+	ticket limitStrategyIsLimited ifTrue:
 	[ ((self attendeesForATicket: ticket except: anAttendee) size < ticket limitStrategy limit) ifTrue: [ ^ true ]
 	ifFalse: [ ERException ticketWasExceeded signal ] ]
 ]
