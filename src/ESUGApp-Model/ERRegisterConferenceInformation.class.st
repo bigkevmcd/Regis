@@ -38,24 +38,24 @@ ERRegisterConferenceInformation class >> tShirtSizes [
 ]
 
 { #category : #adding }
-ERRegisterConferenceInformation >> addMyPreferenceForLuchTo: aDictionary [
-	aDictionary keysDo: [ :key | (self perform: key) 
-		ifTrue: [ 
+ERRegisterConferenceInformation >> addMyPreferenceForLunchTo: aDictionary [
+	aDictionary keysDo: [ :key | (self perform: key)
+		ifTrue: [
 			(aDictionary at: key) at: foodPreference put: ((aDictionary at: key) at: foodPreference) + 1 ] ] .
-	^ aDictionary 
+	^ aDictionary
 ]
 
 { #category : #adding }
 ERRegisterConferenceInformation >> addMyPreferenceForSocialDinnerTo: aDictionary [
 	self addPersonToSocialDinner ifTrue: [ aDictionary at: personAddedFoodPreference put: (aDictionary at: personAddedFoodPreference) + 1 ].
 	self attendSocialEvent ifTrue: [ aDictionary at: foodPreference put: (aDictionary at: foodPreference) + 1 ].
-	^ aDictionary 
+	^ aDictionary
 ]
 
 { #category : #adding }
 ERRegisterConferenceInformation >> addMytShirtTo: aDictionary [
 	(aDictionary at: tshirtSize) at: gender put: ((aDictionary at: tshirtSize) at: gender) + 1.
-	^ aDictionary 
+	^ aDictionary
 ]
 
 { #category : #accessing }
@@ -109,7 +109,7 @@ ERRegisterConferenceInformation >> daysOfAssistance [
 	| aString |
 	aString := ''.
 	#(#monday #tuesday #wednesday #thursday #friday)
-		do: [ :each | 
+		do: [ :each |
 			(self perform: each)
 				ifTrue: [ aString isEmpty
 						ifTrue: [ aString := each asString capitalized ]
@@ -122,7 +122,7 @@ ERRegisterConferenceInformation >> descriptionAddPersonToSocialDinner [
 	<magritteDescription>
 	| tmp2 |
 	tmp2 := MABooleanDescription new.
-	tmp2 
+	tmp2
 		checkboxLabel: 'Check if you add a person to the Social Dinner';
 		accessor: #addPersonToSocialDinner;
 		beRequired ;
@@ -140,7 +140,7 @@ ERRegisterConferenceInformation >> descriptionAddedToMainList [
 	<magritteDescription>
 	| tmp2 |
 	tmp2 := MABooleanDescription new.
-	tmp2 
+	tmp2
 		checkboxLabel: 'Check if you want to be added to the Mailling List';
 		accessor: #addedToMainList;
 		beRequired;
@@ -158,7 +158,7 @@ ERRegisterConferenceInformation >> descriptionAttendSocialEvent [
 	<magritteDescription>
 	| tmp2 |
 	tmp2 := MABooleanDescription new.
-	tmp2 
+	tmp2
 		checkboxLabel: 'Check if you will you go to the social Event';
 		accessor: #attendSocialEvent;
 		beRequired ;
@@ -215,7 +215,7 @@ ERRegisterConferenceInformation >> descriptionFriday [
 	<magritteDescription>
 	| tmp2 |
 	tmp2 := MABooleanDescription new.
-	tmp2 
+	tmp2
 		checkboxLabel: 'Friday';
 		accessor: #friday;
 		componentClass: MDLMACheckboxComponent;
@@ -251,7 +251,7 @@ ERRegisterConferenceInformation >> descriptionMonday [
 	<magritteDescription>
 	| tmp2 |
 	tmp2 := MABooleanDescription new.
-	tmp2 
+	tmp2
 		checkboxLabel: 'Monday';
 		accessor: #monday;
 		group: 'Days: ';
@@ -269,7 +269,7 @@ ERRegisterConferenceInformation >> descriptionThursday [
 	<magritteDescription>
 	| tmp2 |
 	tmp2 := MABooleanDescription new.
-	tmp2 
+	tmp2
 		checkboxLabel: 'Thursday';
 		accessor: #thursday;
 		componentClass: MDLMACheckboxComponent;
@@ -306,7 +306,7 @@ ERRegisterConferenceInformation >> descriptionTuesday [
 	<magritteDescription>
 	| tmp2 |
 	tmp2 := MABooleanDescription new.
-	tmp2 
+	tmp2
 		checkboxLabel: 'Tuesday';
 		accessor: #tuesday;
 		componentClass: MDLMACheckboxComponent;
@@ -323,7 +323,7 @@ ERRegisterConferenceInformation >> descriptionWednesday [
 	<magritteDescription>
 	| tmp2 |
 	tmp2 := MABooleanDescription new.
-	tmp2 
+	tmp2
 		checkboxLabel: 'Wednesday';
 		accessor: #wednesday;
 		componentClass: MDLMACheckboxComponent;
@@ -404,12 +404,12 @@ ERRegisterConferenceInformation >> isMale [
 
 { #category : #initialization }
 ERRegisterConferenceInformation >> isNormal [
-	^ foodPreference ='Normal' 
+	^ foodPreference ='Normal'
 ]
 
 { #category : #initialization }
 ERRegisterConferenceInformation >> isNormal: aString [
-	^ aString ='Normal' 
+	^ aString ='Normal'
 ]
 
 { #category : #initialization }
