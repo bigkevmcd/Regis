@@ -465,8 +465,8 @@ ERConference >> fee [
 ]
 
 { #category : #accessing }
-ERConference >> fee: anObject [
-	fee := anObject
+ERConference >> fee: anERFee [
+	fee := anERFee
 ]
 
 { #category : #filtering }
