@@ -4,8 +4,6 @@ Description
 
 See PMInterface comment for an overview.
 
-
-
 I act like a Dictionary. According to PostMark documentation, I accept the following values:
 
 {
@@ -35,6 +33,19 @@ PMEmail >> addAttachment: name content: contentString contentType: aContentType 
 	attachment at: 'Name' put: name.
 	attachment at: 'ContentType' put: aContentType asString.
 	attachment at: 'Content' put: encodedStream contents.
+
+	(self at: #Attachments) ifNil: [ self at: #Attachments put: OrderedCollection new ].
+	(self at: #Attachments) add: attachment.
+]
+
+{ #category : #attachments }
+PMEmail >> addAttachment: name content: contentString contentType: aContentType [
+	| attachment encodedStream |
+	encodedStream := Base64MimeConverter mimeEncode: contentString readStream.
+	attachment := NeoJSONObject new.
+	attachment at: 'Name' put: name.
+	attachment at: 'ContentType' put: aContentType asString.
+	attachment at: 'Content' put: encodedStream contents.
 	
 	(self at: #Attachments) ifNil: [ self at: #Attachments put: OrderedCollection new ].
 	(self at: #Attachments) add: attachment.
@@ -42,13 +53,12 @@ PMEmail >> addAttachment: name content: contentString contentType: aContentType 
 
 { #category : #attachments }
 PMEmail >> send [
-	"want to make sure it gets sent.  This may be bad if there are lots of emails and lots of errors.  "
-
+	"want to make sure it gets sent. This may be bad if there are lots of emails and lots of errors."
 	| success interface |
 	interface := PMInterface new.
 	success := interface send: self.
 	[ success ]
-		whileFalse: [ 
+		whileFalse: [
 			(Delay forMilliseconds: 5000) wait.
 			success := interface send: self ]
 ]

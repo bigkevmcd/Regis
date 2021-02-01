@@ -31,8 +31,8 @@ ERConferenceEmailConfiguration >> descriptionApiKey [
 	<magritteDescription>
 	| tmp |
 	tmp := MAStringDescription new.
-	tmp 
-		accessor: #apiKey; 
+	tmp
+		accessor: #apiKey;
 		priority: 30;
 		required: true;
 		withoutLabel: true;
@@ -47,8 +47,8 @@ ERConferenceEmailConfiguration >> descriptionEmailHelp [
 	<magritteDescription>
 	| tmp |
 	tmp := MAStringDescription new.
-	tmp 
-		accessor: #emailHelp; 
+	tmp
+		accessor: #emailHelp;
 		priority: 50;
 		withoutLabel: true;
 		addCondition: [ :value | value matchesRegex: '\S+@\S+\.\S+' ];
@@ -63,8 +63,8 @@ ERConferenceEmailConfiguration >> descriptionSenderEmailAddress [
 	<magritteDescription>
 	| tmp |
 	tmp := MAStringDescription new.
-	tmp 
-		accessor: #senderEmailAddress; 
+	tmp
+		accessor: #senderEmailAddress;
 		priority: 10;
 		required: true;
 		withoutLabel: true;
@@ -81,8 +81,8 @@ ERConferenceEmailConfiguration >> descriptionWelcomeText [
 	<magritteDescription>
 	| tmp |
 	tmp := MAMemoDescription new.
-	tmp 
-		accessor: #welcomeText; 
+	tmp
+		accessor: #welcomeText;
 		priority: 40;
 		required: false;
 		lineCount: 5;
@@ -98,8 +98,8 @@ ERConferenceEmailConfiguration >> emailHelp [
 ]
 
 { #category : #accessing }
-ERConferenceEmailConfiguration >> emailHelp: anObject [
-	emailHelp := anObject
+ERConferenceEmailConfiguration >> emailHelp: aString [
+	emailHelp := aString
 ]
 
 { #category : #accessing }
@@ -108,8 +108,8 @@ ERConferenceEmailConfiguration >> senderEmailAddress [
 ]
 
 { #category : #accessing }
-ERConferenceEmailConfiguration >> senderEmailAddress: anObject [
-	senderEmailAddress := anObject
+ERConferenceEmailConfiguration >> senderEmailAddress: aString [
+	senderEmailAddress := aString
 ]
 
 { #category : #accessing }
@@ -118,6 +118,6 @@ ERConferenceEmailConfiguration >> welcomeText [
 ]
 
 { #category : #accessing }
-ERConferenceEmailConfiguration >> welcomeText: anObject [
-	welcomeText := anObject
+ERConferenceEmailConfiguration >> welcomeText: aString [
+	welcomeText := aString
 ]

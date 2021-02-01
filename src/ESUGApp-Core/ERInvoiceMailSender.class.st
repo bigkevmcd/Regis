@@ -7,7 +7,7 @@ I am an class for send emails with invoice of registration.
 Instance Variables
 --------------------
 	attendee: an ERAttendee that will be send a mail
-	conference: an ERConference (to find atributtes of ERConferenceEmailConfiguration)
+	conference: an ERConference (to find attributes of ERConferenceEmailConfiguration)
 "
 Class {
 	#name : #ERInvoiceMailSender,
@@ -21,12 +21,12 @@ Class {
 
 { #category : #'instance creation' }
 ERInvoiceMailSender class >> on: anAttendee [
-	^ self new attendee: anAttendee 
+	^ self new attendee: anAttendee
 ]
 
 { #category : #rendering }
 ERInvoiceMailSender >> attendee: anAttendee [
-	attendee := anAttendee 
+	attendee := anAttendee
 ]
 
 { #category : #rendering }
@@ -59,9 +59,9 @@ ERInvoiceMailSender >> toEmailString [
 ]
 
 { #category : #rendering }
-ERInvoiceMailSender >> value [ 
+ERInvoiceMailSender >> value [
 	|value invoice|
-	invoice := self getInvoiceAsStreamOf: attendee.	
+	invoice := self getInvoiceAsStreamOf: attendee.
 	value := super value.
 	^ value addAttachment: 'invoice.pdf' content: invoice buffer contentType: 'application/pdf';yourself.
 ]

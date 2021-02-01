@@ -64,8 +64,8 @@ ERRegisterConferenceInformation >> addPersonToSocialDinner [
 ]
 
 { #category : #accessing }
-ERRegisterConferenceInformation >> addPersonToSocialDinner: anObject [
-	addPersonToSocialDinner := anObject
+ERRegisterConferenceInformation >> addPersonToSocialDinner: aBoolean [
+	addPersonToSocialDinner := aBoolean
 ]
 
 { #category : #accessing }

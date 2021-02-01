@@ -2,7 +2,7 @@
 Description
 --------------------
 
-I am a model of Award
+I am a model of Award.
 "
 Class {
 	#name : #ERAward,
@@ -25,9 +25,9 @@ Class {
 
 { #category : #accessing }
 ERAward class >> submitter: anAttendee [
-	^ self new 
-		submitter: anAttendee; 
-		yourself 
+	^ self new
+		submitter: anAttendee;
+		yourself
 ]
 
 { #category : #accessing }
@@ -36,8 +36,8 @@ ERAward >> affiliation [
 ]
 
 { #category : #accessing }
-ERAward >> affiliation: anObject [
-	affiliation := anObject
+ERAward >> affiliation: aString [
+	affiliation := aString
 ]
 
 { #category : #accessing }
@@ -46,8 +46,8 @@ ERAward >> country [
 ]
 
 { #category : #accessing }
-ERAward >> country: anObject [
-	country := anObject
+ERAward >> country: aString [
+	country := aString
 ]
 
 { #category : #accessing }
@@ -56,8 +56,8 @@ ERAward >> demoUrl [
 ]
 
 { #category : #accessing }
-ERAward >> demoUrl: anObject [
-	demoUrl := anObject
+ERAward >> demoUrl: aString [
+	demoUrl := aString
 ]
 
 { #category : #'magrittes-descriptions' }
@@ -65,8 +65,8 @@ ERAward >> descriptionAffilitation [
 	<magritteDescription>
 	| tmp |
 	tmp := MAStringDescription new.
-	tmp 
-		accessor: #affiliation; 
+	tmp
+		accessor: #affiliation;
 		priority: 50;
 		beRequired;
 		label: 'Affiliation (Required)';
@@ -98,8 +98,8 @@ ERAward >> descriptionDemoUrl [
 	<magritteDescription>
 	| tmp |
 	tmp := MAStringDescription new.
-	tmp 
-		accessor: #demoUrl; 
+	tmp
+		accessor: #demoUrl;
 		priority: 80;
 		required: false;
 		withoutLabel: true;
@@ -115,8 +115,8 @@ ERAward >> descriptionDownloadUrl [
 	<magritteDescription>
 	| tmp |
 	tmp := MAStringDescription new.
-	tmp 
-		accessor: #downloadUrl; 
+	tmp
+		accessor: #downloadUrl;
 		priority: 70;
 		beRequired;
 		label: 'Download Url (Required)';
@@ -133,8 +133,8 @@ ERAward >> descriptionKeywords [
 	<magritteDescription>
 	| tmp |
 	tmp := MAStringDescription new.
-	tmp 
-		accessor: #keywords; 
+	tmp
+		accessor: #keywords;
 		priority: 90;
 		required: false;
 		withoutLabel: true;
@@ -148,8 +148,8 @@ ERAward >> descriptionLicence [
 	<magritteDescription>
 	| tmp |
 	tmp := MAStringDescription new.
-	tmp 
-		accessor: #licence; 
+	tmp
+		accessor: #licence;
 		priority: 100;
 		required: false;
 		withoutLabel: true;
@@ -163,8 +163,8 @@ ERAward >> descriptionNameAward [
 	<magritteDescription>
 	| tmp |
 	tmp := MAStringDescription new.
-	tmp 
-		accessor: #nameAward; 
+	tmp
+		accessor: #nameAward;
 		priority: 10;
 		beRequired;
 		label: 'Name (Required)';
@@ -182,7 +182,7 @@ ERAward >> descriptionOtherDevelopers [
 			priority: 30;
 			lineCount: 5;
 			id: 'otherDevelopers';
-			yourself 
+			yourself
 ]
 
 { #category : #'magrittes-descriptions' }
@@ -190,8 +190,8 @@ ERAward >> descriptionSmalltalkDialect [
 	<magritteDescription>
 	| tmp |
 	tmp := MAStringDescription new.
-	tmp 
-		accessor: #smalltalkDialect; 
+	tmp
+		accessor: #smalltalkDialect;
 		priority: 40;
 		required: false;
 		withoutLabel: true;
@@ -216,8 +216,8 @@ ERAward >> keywords [
 ]
 
 { #category : #accessing }
-ERAward >> keywords: anObject [
-	keywords := anObject
+ERAward >> keywords: aString [
+	keywords := aString
 ]
 
 { #category : #accessing }
@@ -226,8 +226,8 @@ ERAward >> licence [
 ]
 
 { #category : #accessing }
-ERAward >> licence: anObject [
-	licence := anObject
+ERAward >> licence: aString [
+	licence := aString
 ]
 
 { #category : #accessing }
@@ -256,8 +256,8 @@ ERAward >> smalltalkDialect [
 ]
 
 { #category : #accessing }
-ERAward >> smalltalkDialect: anObject [
-	smalltalkDialect := anObject
+ERAward >> smalltalkDialect: aString [
+	smalltalkDialect := aString
 ]
 
 { #category : #accessing }
