@@ -46,8 +46,8 @@ ERConference >> active [
 ]
 
 { #category : #accessing }
-ERConference >> active: anObject [
-	active := anObject
+ERConference >> active: aBoolean [
+	active := aBoolean
 ]
 
 { #category : #adding }
@@ -138,8 +138,8 @@ ERConference >> attends [
 ]
 
 { #category : #accessing }
-ERConference >> attends: anObject [
-	attends := anObject
+ERConference >> attends: aBoolean [
+	attends := aBoolean
 ]
 
 { #category : #exporting }
@@ -167,8 +167,8 @@ ERConference >> configuration [
 ]
 
 { #category : #accessing }
-ERConference >> configuration: anObject [
-	configuration := anObject
+ERConference >> configuration: anERConferenceConfigurationModel [
+	configuration := anERConferenceConfigurationModel
 ]
 
 { #category : #accessing }
@@ -177,8 +177,8 @@ ERConference >> configurationOfHomePage [
 ]
 
 { #category : #accessing }
-ERConference >> configurationOfHomePage: anObject [
-	configurationOfHomePage := anObject
+ERConference >> configurationOfHomePage: anERConferenceConfigurationOfHomePage [
+	configurationOfHomePage := anERConferenceConfigurationOfHomePage
 ]
 
 { #category : #action }
@@ -474,7 +474,6 @@ ERConference >> filterAttendsBy: aSymbol matchesWith: aString [
 	^ self attends select:
 		[ :att | (att userAccount perform: aSymbol) asLowercase
 		includesSubstring: aString asLowercase ]
-
 ]
 
 { #category : #filtering }
@@ -528,8 +527,8 @@ ERConference >> groups [
 ]
 
 { #category : #accessing }
-ERConference >> groups: anObject [
-	groups := anObject
+ERConference >> groups: aCollectionOfERGroup [
+	groups := aCollectionOfERGroup
 ]
 
 { #category : #header }
@@ -847,8 +846,10 @@ ERConference >> validateLoginFor: aString1 password: aString2 [
 
 { #category : #validations }
 ERConference >> verifyIfTicket: ticket canApplyTo: anAttendee [
+	""
 	ticket limitStrategyIsUnlimited ifTrue: [ ^ true ].
 	ticket limitStrategyIsLimited ifTrue:
-	[ ((self attendeesForATicket: ticket except: anAttendee) size < ticket limitStrategy limit) ifTrue: [ ^ true ]
-	ifFalse: [ ERException ticketWasExceeded signal ] ]
+			[ ((self attendeesForATicket: ticket except: anAttendee) size < ticket limitStrategy limit)
+				ifTrue: [ ^ true ]
+				ifFalse: [ ERException ticketWasExceeded signal ] ]
 ]
