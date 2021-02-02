@@ -22,7 +22,7 @@ ERRegistrationController class >> attendee: anAtteendee [
 	|controller|
 	controller := self new.
 	controller attendee: anAtteendee .
-	^ controller 
+	^ controller
 ]
 
 { #category : #accessing }
@@ -31,8 +31,8 @@ ERRegistrationController >> attendee [
 ]
 
 { #category : #accessing }
-ERRegistrationController >> attendee: anObject [
-	attendee := anObject 
+ERRegistrationController >> attendee: anAttendee [
+	attendee := anAttendee
 ]
 
 { #category : #initialize }

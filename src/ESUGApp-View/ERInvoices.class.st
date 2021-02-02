@@ -61,8 +61,8 @@ ERInvoices >> exportAllInvoices [
 	nameZipFile := 'Invoices'.
 	subDir := 'DirectoryInvoices'.
 	ERPDFInvoice demoPath: subDir, '/'.
-	self invoices do: [ :anObject | 
-		ERPDFInvoice templateRegistrationInvoice: anObject
+	self invoices do: [ :anInvoice | 
+		ERPDFInvoice templateRegistrationInvoice: anInvoice
 	].
 	encodeZipFile := controller codingZipFile: nameZipFile with: subDir.
 	self updateStateTab: self tabName.

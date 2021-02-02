@@ -28,8 +28,8 @@ ERConferenceConfigurationModel >> dateFrom [
 ]
 
 { #category : #accessing }
-ERConferenceConfigurationModel >> dateFrom: anObject [
-	dateFrom := anObject
+ERConferenceConfigurationModel >> dateFrom: aString [
+	dateFrom := aString
 ]
 
 { #category : #accessing }
@@ -38,8 +38,8 @@ ERConferenceConfigurationModel >> dateSubmissionDeadline [
 ]
 
 { #category : #accessing }
-ERConferenceConfigurationModel >> dateSubmissionDeadline: anObject [
-	dateSubmissionDeadline := anObject
+ERConferenceConfigurationModel >> dateSubmissionDeadline: aString [
+	dateSubmissionDeadline := aString
 ]
 
 { #category : #accessing }
@@ -48,8 +48,8 @@ ERConferenceConfigurationModel >> dateTo [
 ]
 
 { #category : #accessing }
-ERConferenceConfigurationModel >> dateTo: anObject [
-	dateTo := anObject
+ERConferenceConfigurationModel >> dateTo: aString [
+	dateTo := aString
 ]
 
 { #category : #accessing }
@@ -58,8 +58,8 @@ ERConferenceConfigurationModel >> description [
 ]
 
 { #category : #accessing }
-ERConferenceConfigurationModel >> description: anObject [
-	description := anObject
+ERConferenceConfigurationModel >> description: aString [
+	description := aString
 ]
 
 { #category : #'magrittes-descriptions' }
@@ -191,8 +191,8 @@ ERConferenceConfigurationModel >> earlyRegistrationDeadline [
 ]
 
 { #category : #accessing }
-ERConferenceConfigurationModel >> earlyRegistrationDeadline: anObject [
-	earlyRegistrationDeadline := anObject
+ERConferenceConfigurationModel >> earlyRegistrationDeadline: aString [
+	earlyRegistrationDeadline := aString
 ]
 
 { #category : #accessing }
@@ -201,8 +201,8 @@ ERConferenceConfigurationModel >> emailConfiguration [
 ]
 
 { #category : #accessing }
-ERConferenceConfigurationModel >> emailConfiguration: anObject [
-	emailConfiguration := anObject
+ERConferenceConfigurationModel >> emailConfiguration: aConferenceEmailConfiguration [
+	emailConfiguration := aConferenceEmailConfiguration
 ]
 
 { #category : #accessing }
@@ -211,8 +211,8 @@ ERConferenceConfigurationModel >> homePageUrl [
 ]
 
 { #category : #accessing }
-ERConferenceConfigurationModel >> homePageUrl: anObject [
-	homePageUrl := anObject
+ERConferenceConfigurationModel >> homePageUrl: aString [
+	homePageUrl := aString
 ]
 
 { #category : #initialization }
@@ -232,8 +232,8 @@ ERConferenceConfigurationModel >> name [
 ]
 
 { #category : #accessing }
-ERConferenceConfigurationModel >> name: anObject [
-	name := anObject
+ERConferenceConfigurationModel >> name: aString [
+	name := aString
 ]
 
 { #category : #accessing }
@@ -242,8 +242,8 @@ ERConferenceConfigurationModel >> openRegistration [
 ]
 
 { #category : #accessing }
-ERConferenceConfigurationModel >> openRegistration: anObject [
-	openRegistration := anObject
+ERConferenceConfigurationModel >> openRegistration: aBoolean [
+	openRegistration := aBoolean
 ]
 
 { #category : #accessing }
@@ -252,8 +252,8 @@ ERConferenceConfigurationModel >> organizer [
 ]
 
 { #category : #accessing }
-ERConferenceConfigurationModel >> organizer: anObject [
-	organizer := anObject
+ERConferenceConfigurationModel >> organizer: aConferenceOrganizer [
+	organizer := aConferenceOrganizer
 ]
 
 { #category : #'accessing pattern' }

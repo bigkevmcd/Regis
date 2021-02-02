@@ -2,7 +2,7 @@
 Description
 --------------------
 
-I am a model of Conference Organizers
+I am a model of Conference Organizers.
 "
 Class {
 	#name : #ERConferenceOrganizer,
@@ -22,8 +22,8 @@ ERConferenceOrganizer >> addressString [
 ]
 
 { #category : #accessing }
-ERConferenceOrganizer >> addressString: anObject [
-	addressString := anObject
+ERConferenceOrganizer >> addressString: aString [
+	addressString := aString
 ]
 
 { #category : #'magrittes-descriptions' }
@@ -31,8 +31,8 @@ ERConferenceOrganizer >> descriptionAddressString [
 	<magritteDescription>
 	| tmp |
 	tmp := MAMemoDescription new.
-	tmp 
-		accessor: #addressString; 
+	tmp
+		accessor: #addressString;
 		priority: 40;
 		required: false;
 		lineCount: 5;
@@ -47,8 +47,8 @@ ERConferenceOrganizer >> descriptionFiscalSituation [
 	<magritteDescription>
 	| tmp |
 	tmp := MAStringDescription new.
-	tmp 
-		accessor: #fiscalSituation; 
+	tmp
+		accessor: #fiscalSituation;
 		priority: 20;
 		required: false;
 		withoutLabel: true;
@@ -62,8 +62,8 @@ ERConferenceOrganizer >> descriptionName [
 	<magritteDescription>
 	| tmp |
 	tmp := MAStringDescription new.
-	tmp 
-		accessor: #name; 
+	tmp
+		accessor: #name;
 		priority: 10;
 		required: false;
 		withoutLabel: true;
@@ -77,8 +77,8 @@ ERConferenceOrganizer >> descriptionWebPageUrl [
 	<magritteDescription>
 	| tmp |
 	tmp := MAStringDescription new.
-	tmp 
-		accessor: #webPageUrl; 
+	tmp
+		accessor: #webPageUrl;
 		priority: 30;
 		required: false;
 		withoutLabel: true;
@@ -93,8 +93,8 @@ ERConferenceOrganizer >> fiscalSituation [
 ]
 
 { #category : #accessing }
-ERConferenceOrganizer >> fiscalSituation: anObject [
-	fiscalSituation := anObject
+ERConferenceOrganizer >> fiscalSituation: aString [
+	fiscalSituation := aString
 ]
 
 { #category : #accessing }
@@ -103,8 +103,8 @@ ERConferenceOrganizer >> name [
 ]
 
 { #category : #accessing }
-ERConferenceOrganizer >> name: anObject [
-	name := anObject
+ERConferenceOrganizer >> name: aString [
+	name := aString
 ]
 
 { #category : #accessing }
@@ -113,6 +113,6 @@ ERConferenceOrganizer >> webPageUrl [
 ]
 
 { #category : #accessing }
-ERConferenceOrganizer >> webPageUrl: anObject [
-	webPageUrl := anObject
+ERConferenceOrganizer >> webPageUrl: aString [
+	webPageUrl := aString
 ]

@@ -29,8 +29,8 @@ ERFee >> bankAccountInformation [
 ]
 
 { #category : #accessing }
-ERFee >> bankAccountInformation: anObject [
-	bankAccountInformation := anObject
+ERFee >> bankAccountInformation: anERBankAccountInformation [
+	bankAccountInformation := anERBankAccountInformation
 ]
 
 { #category : #accessing }
@@ -39,20 +39,18 @@ ERFee >> bankPayPalUrl [
 ]
 
 { #category : #accessing }
-ERFee >> bankPayPalUrl: anObject [
-	bankPayPalUrl := anObject
+ERFee >> bankPayPalUrl: aString [
+	bankPayPalUrl := aString
 ]
 
 { #category : #accessing }
 ERFee >> creditCardCommissionPercentage [
-
 	^ creditCardCommissionPercentage
 ]
 
 { #category : #accessing }
-ERFee >> creditCardCommissionPercentage: anObject [
-
-	creditCardCommissionPercentage := anObject
+ERFee >> creditCardCommissionPercentage: aNumber [
+	creditCardCommissionPercentage := aNumber
 ]
 
 { #category : #accessing }
@@ -70,8 +68,8 @@ ERFee >> descriptionBankPayPalUrl [
 	<magritteDescription>
 	| tmp |
 	tmp := MAStringDescription new.
-	tmp 
-		accessor: #bankPayPalUrl; 
+	tmp
+		accessor: #bankPayPalUrl;
 		priority: 70;
 		beRequired;
 		label: 'PayPal URL (Required)';
@@ -86,8 +84,8 @@ ERFee >> descriptionCreditCardCommissionPercentage [
 	<magritteDescription>
 	| tmp |
 	tmp := MANumberDescription new.
-	tmp 
-		accessor: #creditCardCommissionPercentage; 
+	tmp
+		accessor: #creditCardCommissionPercentage;
 		priority: 100;
 		beRequired;
 		label: 'Credit card Commission Percentage (Required)';
@@ -105,8 +103,8 @@ ERFee >> descriptionErfAllDaysFee [
 	<magritteDescription>
 	| tmp |
 	tmp := MANumberDescription new.
-	tmp 
-		accessor: #erfAllDaysFee; 
+	tmp
+		accessor: #erfAllDaysFee;
 		priority: 30;
 		beRequired;
 		group: 'Early Registration Fee:';
@@ -125,8 +123,8 @@ ERFee >> descriptionErfOneDayFee [
 	<magritteDescription>
 	| tmp |
 	tmp := MANumberDescription new.
-	tmp 
-		accessor: #erfOneDayFee; 
+	tmp
+		accessor: #erfOneDayFee;
 		priority: 40;
 		beRequired;
 		label: 'One Day Fee (Required)';
@@ -144,8 +142,8 @@ ERFee >> descriptionExtraPersonSD [
 	<magritteDescription>
 	| tmp |
 	tmp := MANumberDescription new.
-	tmp 
-		accessor: #extraPersonSD; 
+	tmp
+		accessor: #extraPersonSD;
 		priority: 20;
 		beRequired;
 		label: 'Price for add person to the Social Dinner (Required)';
@@ -163,8 +161,8 @@ ERFee >> descriptionLrfAllDaysFee [
 	<magritteDescription>
 	| tmp |
 	tmp := MANumberDescription new.
-	tmp 
-		accessor: #lrfAllDaysFee; 
+	tmp
+		accessor: #lrfAllDaysFee;
 		priority: 50;
 		beRequired;
 		group: 'Late Registration Fee:';
@@ -183,8 +181,8 @@ ERFee >> descriptionLrfOneDayFee [
 	<magritteDescription>
 	| tmp |
 	tmp := MANumberDescription new.
-	tmp 
-		accessor: #lrfOneDayFee; 
+	tmp
+		accessor: #lrfOneDayFee;
 		priority: 60;
 		beRequired;
 		label: 'One Day Fee (Required)';
@@ -202,8 +200,8 @@ ERFee >> descriptionPayPalCommissionPercentage [
 	<magritteDescription>
 	| tmp |
 	tmp := MANumberDescription new.
-	tmp 
-		accessor: #payPalCommissionPercentage; 
+	tmp
+		accessor: #payPalCommissionPercentage;
 		priority: 80;
 		beRequired;
 		label: 'Paypal Commission Percentage (Required)';
@@ -238,8 +236,8 @@ ERFee >> descriptionStaticPayPalCommission [
 	<magritteDescription>
 	| tmp |
 	tmp := MANumberDescription new.
-	tmp 
-		accessor: #staticCommissionPaypal; 
+	tmp
+		accessor: #staticCommissionPaypal;
 		priority: 90;
 		beRequired;
 		label: 'Static Commission Paypal (Required)';
@@ -268,8 +266,8 @@ ERFee >> erfOneDayFee [
 ]
 
 { #category : #accessing }
-ERFee >> erfOneDayFee: anObject [
-	erfOneDayFee := anObject
+ERFee >> erfOneDayFee: aNumber [
+	erfOneDayFee := aNumber
 ]
 
 { #category : #accessing }
@@ -278,15 +276,14 @@ ERFee >> extraPersonSD [
 ]
 
 { #category : #accessing }
-ERFee >> extraPersonSD: anObject [
-	extraPersonSD := anObject
+ERFee >> extraPersonSD: aNumber [
+	extraPersonSD := aNumber
 ]
 
 { #category : #initialization }
 ERFee >> initialize [
 	super initialize.
 	bankAccountInformation := ERBankAccountInformation new.
-	
 ]
 
 { #category : #accessing }
@@ -295,8 +292,8 @@ ERFee >> lrfAllDaysFee [
 ]
 
 { #category : #accessing }
-ERFee >> lrfAllDaysFee: anObject [
-	lrfAllDaysFee := anObject
+ERFee >> lrfAllDaysFee: aNumber [
+	lrfAllDaysFee := aNumber
 ]
 
 { #category : #accessing }
@@ -305,8 +302,8 @@ ERFee >> lrfOneDayFee [
 ]
 
 { #category : #accessing }
-ERFee >> lrfOneDayFee: anObject [
-	lrfOneDayFee := anObject
+ERFee >> lrfOneDayFee: aNumber [
+	lrfOneDayFee := aNumber
 ]
 
 { #category : #'accesing-tokens' }
@@ -316,7 +313,7 @@ ERFee >> payPalAmountToken [
 
 { #category : #accessing }
 ERFee >> payPalCommissionPercentage [
-	^ payPalCommissionPercentage 
+	^ payPalCommissionPercentage
 ]
 
 { #category : #accessing }
@@ -326,18 +323,17 @@ ERFee >> payPalCommissionPercentage: anObject [
 
 { #category : #'accesing-tokens' }
 ERFee >> payPalInvoiceNumberToken [
-	
 	^ '[INVOICENUMBER]'
 ]
 
 { #category : #accessing }
 ERFee >> staticCommissionPaypal [
-	^ staticCommissionPaypal 
+	^ staticCommissionPaypal
 ]
 
 { #category : #accessing }
-ERFee >> staticCommissionPaypal: anObject [
-	staticCommissionPaypal := anObject
+ERFee >> staticCommissionPaypal: aNumber [
+	staticCommissionPaypal := aNumber
 ]
 
 { #category : #accessing }
