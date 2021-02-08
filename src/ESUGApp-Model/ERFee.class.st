@@ -29,8 +29,8 @@ ERFee >> bankAccountInformation [
 ]
 
 { #category : #accessing }
-ERFee >> bankAccountInformation: anObject [
-	bankAccountInformation := anObject
+ERFee >> bankAccountInformation: anERBankAccountInformation [
+	bankAccountInformation := anERBankAccountInformation
 ]
 
 { #category : #accessing }
@@ -39,20 +39,18 @@ ERFee >> bankPayPalUrl [
 ]
 
 { #category : #accessing }
-ERFee >> bankPayPalUrl: anObject [
-	bankPayPalUrl := anObject
+ERFee >> bankPayPalUrl: aString [
+	bankPayPalUrl := aString
 ]
 
 { #category : #accessing }
 ERFee >> creditCardCommissionPercentage [
-
 	^ creditCardCommissionPercentage
 ]
 
 { #category : #accessing }
-ERFee >> creditCardCommissionPercentage: anObject [
-
-	creditCardCommissionPercentage := anObject
+ERFee >> creditCardCommissionPercentage: aFloat [
+	creditCardCommissionPercentage := aFloat
 ]
 
 { #category : #accessing }
@@ -70,8 +68,8 @@ ERFee >> descriptionBankPayPalUrl [
 	<magritteDescription>
 	| tmp |
 	tmp := MAStringDescription new.
-	tmp 
-		accessor: #bankPayPalUrl; 
+	tmp
+		accessor: #bankPayPalUrl;
 		priority: 70;
 		beRequired;
 		label: 'PayPal URL (Required)';
@@ -86,8 +84,8 @@ ERFee >> descriptionCreditCardCommissionPercentage [
 	<magritteDescription>
 	| tmp |
 	tmp := MANumberDescription new.
-	tmp 
-		accessor: #creditCardCommissionPercentage; 
+	tmp
+		accessor: #creditCardCommissionPercentage;
 		priority: 100;
 		beRequired;
 		label: 'Credit card Commission Percentage (Required)';
@@ -105,8 +103,8 @@ ERFee >> descriptionErfAllDaysFee [
 	<magritteDescription>
 	| tmp |
 	tmp := MANumberDescription new.
-	tmp 
-		accessor: #erfAllDaysFee; 
+	tmp
+		accessor: #erfAllDaysFee;
 		priority: 30;
 		beRequired;
 		group: 'Early Registration Fee:';
@@ -125,8 +123,8 @@ ERFee >> descriptionErfOneDayFee [
 	<magritteDescription>
 	| tmp |
 	tmp := MANumberDescription new.
-	tmp 
-		accessor: #erfOneDayFee; 
+	tmp
+		accessor: #erfOneDayFee;
 		priority: 40;
 		beRequired;
 		label: 'One Day Fee (Required)';
@@ -144,8 +142,8 @@ ERFee >> descriptionExtraPersonSD [
 	<magritteDescription>
 	| tmp |
 	tmp := MANumberDescription new.
-	tmp 
-		accessor: #extraPersonSD; 
+	tmp
+		accessor: #extraPersonSD;
 		priority: 20;
 		beRequired;
 		label: 'Price for add person to the Social Dinner (Required)';
@@ -163,8 +161,8 @@ ERFee >> descriptionLrfAllDaysFee [
 	<magritteDescription>
 	| tmp |
 	tmp := MANumberDescription new.
-	tmp 
-		accessor: #lrfAllDaysFee; 
+	tmp
+		accessor: #lrfAllDaysFee;
 		priority: 50;
 		beRequired;
 		group: 'Late Registration Fee:';
@@ -183,8 +181,8 @@ ERFee >> descriptionLrfOneDayFee [
 	<magritteDescription>
 	| tmp |
 	tmp := MANumberDescription new.
-	tmp 
-		accessor: #lrfOneDayFee; 
+	tmp
+		accessor: #lrfOneDayFee;
 		priority: 60;
 		beRequired;
 		label: 'One Day Fee (Required)';
@@ -202,8 +200,8 @@ ERFee >> descriptionPayPalCommissionPercentage [
 	<magritteDescription>
 	| tmp |
 	tmp := MANumberDescription new.
-	tmp 
-		accessor: #payPalCommissionPercentage; 
+	tmp
+		accessor: #payPalCommissionPercentage;
 		priority: 80;
 		beRequired;
 		label: 'Paypal Commission Percentage (Required)';
@@ -238,8 +236,8 @@ ERFee >> descriptionStaticPayPalCommission [
 	<magritteDescription>
 	| tmp |
 	tmp := MANumberDescription new.
-	tmp 
-		accessor: #staticCommissionPaypal; 
+	tmp
+		accessor: #staticCommissionPaypal;
 		priority: 90;
 		beRequired;
 		label: 'Static Commission Paypal (Required)';
@@ -286,7 +284,7 @@ ERFee >> extraPersonSD: anObject [
 ERFee >> initialize [
 	super initialize.
 	bankAccountInformation := ERBankAccountInformation new.
-	
+
 ]
 
 { #category : #accessing }
@@ -316,7 +314,7 @@ ERFee >> payPalAmountToken [
 
 { #category : #accessing }
 ERFee >> payPalCommissionPercentage [
-	^ payPalCommissionPercentage 
+	^ payPalCommissionPercentage
 ]
 
 { #category : #accessing }
@@ -326,13 +324,13 @@ ERFee >> payPalCommissionPercentage: anObject [
 
 { #category : #'accesing-tokens' }
 ERFee >> payPalInvoiceNumberToken [
-	
+
 	^ '[INVOICENUMBER]'
 ]
 
 { #category : #accessing }
 ERFee >> staticCommissionPaypal [
-	^ staticCommissionPaypal 
+	^ staticCommissionPaypal
 ]
 
 { #category : #accessing }
