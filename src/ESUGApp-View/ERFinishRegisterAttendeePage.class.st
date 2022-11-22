@@ -17,15 +17,17 @@ ERFinishRegisterAttendeePage >> content: anObject [
 
 { #category : #actions }
 ERFinishRegisterAttendeePage >> downloadInvoice [
-	self requestContext respond: [ :response |
-		|stream file |
+
+	self requestContext respond: [ :response | 
+		| stream file |
 		file := ERPDFInvoice pdfDocOf: attendee.
-		stream := (RWBinaryOrTextStream on: String new) binary.
+		stream := (FileSystem memory / 'invoice.pdf') binaryWriteStream.
 		file exportTo: stream.
 		response
-            contentType: (WAMimeType main: 'application' sub: 'pdf');
-            document: stream close; contents ;
-            attachmentWithFileName: ('invoice-', attendee id asString, '.pdf') ]
+			contentType: (WAMimeType main: 'application' sub: 'pdf');
+			document: stream stream stream contents;
+			contents;
+			attachmentWithFileName: 'invoice-' , attendee id asString , '.pdf' ]
 ]
 
 { #category : #actions }
