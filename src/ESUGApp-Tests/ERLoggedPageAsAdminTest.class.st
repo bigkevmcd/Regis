@@ -783,7 +783,7 @@ ERLoggedPageAsAdminTest >> testUpdateDateFromConference [
 ERLoggedPageAsAdminTest >> testUpdateDateFromConferenceWithHigherDateThanDateTo [
 	self moveToConferenceOption.
 	acceptFormButton := 'acceptConferenceConfiguration'.
-	self updateField: 'dateFrom' with: '12/05/2020'.
+	self updateField: 'dateFrom' with: controller conference configuration dateTo.
 	self assert: (self textOfElementWithID: 'formConferenceConfigurationAlert' ) equals: ERException invalidEsugDates messageText
 ]
 
