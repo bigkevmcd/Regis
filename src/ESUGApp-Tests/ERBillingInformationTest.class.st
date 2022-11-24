@@ -43,15 +43,6 @@ ERBillingInformationTest >> testEmptyOrganizationPostalField [
 ]
 
 { #category : #tests }
-ERBillingInformationTest >> testMemberShipIsByDefaultNotNil [
-
-	| org |
-	org := (self class testAffiliationInformation) membershipType: 'Nil'; yourself .
-	self assert: org membershipType equals: 'Other'
-	
-]
-
-{ #category : #tests }
 ERBillingInformationTest >> testNonValidOptionMembershipTypeField [
 
 	| org |
