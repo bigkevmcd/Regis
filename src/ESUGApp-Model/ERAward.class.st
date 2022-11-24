@@ -84,7 +84,7 @@ ERAward >> descriptionCountry [
 	tmp1
 		accessor: #country;
 		priority: 60;
-		required: false;
+		required: true;
 		options: ERAttendee countries;
 		withoutLabel: true;
 		id: 'country';
