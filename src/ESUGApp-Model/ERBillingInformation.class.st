@@ -51,7 +51,8 @@ ERBillingInformation >> descriptionMembershipType [
 	tmp1
 		accessor: #membershipType;
 		priority: 90;
-		required: false;
+		required: true;
+		default: 'Other';
 		options: self class membershipTypes;
 		withoutLabel: true;
 		id: 'membershipType';
