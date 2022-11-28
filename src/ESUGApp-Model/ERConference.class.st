@@ -611,6 +611,11 @@ ERConference >> isEarlyRegistrationOf: anAttendee [
 		asDate > anAttendee createdOn asDate
 ]
 
+{ #category : #accessing }
+ERConference >> numberOfNonAcceptedTalks [
+	^ submittedTalks count:  [ :talk |  talk accepted not ] .
+]
+
 { #category : #action }
 ERConference >> openRegistration [
 	self configuration openRegistration: true.
@@ -807,6 +812,13 @@ ERConference >> sumEachRowOf: aList [
 	aList do: [ :li | li at: 'Total' put: 
 		(li select: [ :each | each isString not ]) sum  ].
 	^ aList
+]
+
+{ #category : #action }
+ERConference >> toggleTalkAcceptance: aTalk [
+	"Toggle the acceptance status of a proposed talk"
+	(self submittedTalks detect: [ :each | aTalk id = each id ] ) toggleAcceptance.
+	self save.
 ]
 
 { #category : #accessing }
