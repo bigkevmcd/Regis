@@ -278,7 +278,7 @@ ERUserAccount >> resetPassword [
     random := Random seed: Time millisecondClockValue.
     newPasswordStream := WriteStream on: String new.
     self resetedPasswordSize timesRepeat: [ | newPasswordChar |
-        newPasswordChar := passwordCharacters at: (random nextInt: passwordCharacters size).
+        newPasswordChar := passwordCharacters at: (random nextInteger: passwordCharacters size).
         newPasswordStream nextPut: newPasswordChar ].
     
     newPassword := newPasswordStream contents.
