@@ -156,7 +156,8 @@ ERUserAccount >> descriptionFirstName [
 		priority: 10;
 		beRequired;
 		label: 'First Name (Required)';
-		withoutLabel: true;
+		addCondition: [ :value | value matchesRegex: '\D+' ]
+		labelled: 'Please enter a valid firstName';
 		componentClass: MDLMATextInputComponent.
 	classId
 		ifNil: [ tmp id: 'firstName' ]
@@ -174,7 +175,8 @@ ERUserAccount >> descriptionLastName [
 		priority: 20;
 		beRequired;
 		label: 'Last Name (Required)';
-		withoutLabel: true;
+		addCondition: [ :value | value matchesRegex: '\D+' ]
+		labelled: 'Please enter a valid lastName';
 		componentClass: MDLMATextInputComponent.
 	classId
 		ifNil: [ tmp id: 'lastName' ]
