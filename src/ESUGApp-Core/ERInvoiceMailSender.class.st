@@ -63,5 +63,5 @@ ERInvoiceMailSender >> value [
 	|value invoice|
 	invoice := self getInvoiceAsStreamOf: attendee.	
 	value := super value.
-	^ value addAttachment: 'invoice.pdf' content: invoice stream stream contents contentType: 'application/pdf';yourself.
+	^ value addAttachment: 'invoice.pdf' content: invoice buffer contentType: 'application/pdf';yourself.
 ]

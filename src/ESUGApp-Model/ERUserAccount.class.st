@@ -156,7 +156,8 @@ ERUserAccount >> descriptionFirstName [
 		priority: 10;
 		beRequired;
 		label: 'First Name (Required)';
-		withoutLabel: true;
+		addCondition: [ :value | value matchesRegex: '\D+' ]
+		labelled: 'Please enter a valid firstName';
 		componentClass: MDLMATextInputComponent.
 	classId
 		ifNil: [ tmp id: 'firstName' ]
@@ -174,7 +175,8 @@ ERUserAccount >> descriptionLastName [
 		priority: 20;
 		beRequired;
 		label: 'Last Name (Required)';
-		withoutLabel: true;
+		addCondition: [ :value | value matchesRegex: '\D+' ]
+		labelled: 'Please enter a valid lastName';
 		componentClass: MDLMATextInputComponent.
 	classId
 		ifNil: [ tmp id: 'lastName' ]
@@ -276,7 +278,7 @@ ERUserAccount >> resetPassword [
     random := Random seed: Time millisecondClockValue.
     newPasswordStream := WriteStream on: String new.
     self resetedPasswordSize timesRepeat: [ | newPasswordChar |
-        newPasswordChar := passwordCharacters at: (random nextInt: passwordCharacters size).
+        newPasswordChar := passwordCharacters at: (random nextInteger: passwordCharacters size).
         newPasswordStream nextPut: newPasswordChar ].
     
     newPassword := newPasswordStream contents.
