@@ -76,7 +76,7 @@ ERTable >> renderButton: html with: aObject [
 				id: (dataButton third value: aObject);
 				class:  (classBtn value:aObject) ;
 				onClick: dataButton fifth;
-				disabled: (dataButton sixth ifTrue: 'disabled');
+				disabled: ( (dataButton sixth) isBlock ifTrue: [ (dataButton sixth value:aObject) ifTrue: ['disabled' ] ] ifFalse: [(dataButton sixth) ifTrue: ['disabled' ] ]);
 				callback: [ dataButton second value: aObject ];
 				icon: ( dataButton first isBlock ifTrue: [dataButton first value:aObject ] ifFalse: dataButton first ).
 			html div	class: 'mdl-tooltip'; 
