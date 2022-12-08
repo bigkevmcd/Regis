@@ -123,7 +123,6 @@ ERUsersTab >> listDataToRenderButton [
 				with: 'Delete user'
 				with: 'return confirm(''Are you sure you want to delete this user?'');'
 				with: [ :user | user isAdmin ] );
-
 		yourself
 ]
 
