@@ -16,8 +16,33 @@ ERLoggedPageAsAdminTest >> fillAmount [
 ]
 
 { #category : #actions }
+ERLoggedPageAsAdminTest >> fillConfirmPasswordRegister [
+	self selectElementWithID: 'confirmPasswordRegister' send: '56781234'.
+]
+
+{ #category : #actions }
+ERLoggedPageAsAdminTest >> fillEmail [
+	self selectElementWithID: 'email' send: 'MichelDuBois@gmail.com'.
+]
+
+{ #category : #actions }
+ERLoggedPageAsAdminTest >> fillFirstName [
+	self selectElementWithID: 'firstName' send: 'Michel'.
+]
+
+{ #category : #actions }
+ERLoggedPageAsAdminTest >> fillLastName [
+	self selectElementWithID: 'lastName' send: 'DuBois'.
+]
+
+{ #category : #actions }
 ERLoggedPageAsAdminTest >> fillLimit [
 	self selectElementWithID: 'limit' send: '5'.
+]
+
+{ #category : #actions }
+ERLoggedPageAsAdminTest >> fillPasswordRegister [
+	self selectElementWithID: 'passwordRegister' send: '56781234'.
 ]
 
 { #category : #actions }
@@ -103,6 +128,16 @@ ERLoggedPageAsAdminTest >> moveToTicketsOption [
 { #category : #actions }
 ERLoggedPageAsAdminTest >> moveToUserOption [
 	self pressUserConfiguration.
+]
+
+{ #category : #actions }
+ERLoggedPageAsAdminTest >> pressAcceptAddUser [
+	self clickElementWithID: 'accept-change-affiliation'
+]
+
+{ #category : #actions }
+ERLoggedPageAsAdminTest >> pressAddUser [
+	self clickElementWithID: 'addUser'
 ]
 
 { #category : #actions }
@@ -214,6 +249,16 @@ ERLoggedPageAsAdminTest >> selectPaymentInformationTab [
 ]
 
 { #category : #actions }
+ERLoggedPageAsAdminTest >> selectRoleAdmin [
+	self selectElementWithID: 'role' send: 'Administrator'.
+]
+
+{ #category : #actions }
+ERLoggedPageAsAdminTest >> selectRoleVoluntereStudent [
+	self selectElementWithID: 'role' send: 'Student Volunteer'.
+]
+
+{ #category : #actions }
 ERLoggedPageAsAdminTest >> selectTabChangePassword [
 	self clickElementWithID: 'changePassword'
 ]
@@ -243,7 +288,7 @@ ERLoggedPageAsAdminTest >> testAddTicketSuccesfull [
 	self clickElementWithID: 'acceptAddTicket'.
 	self assert: controller conference reductionTickets size equals: amountOfTickets +1.
 	self deny: (controller conference reductionTickets detect: 
-		[:ticket | ticket ticketId = 'example123']) = nil
+		[:ticket | ticket ticketId = 'example123']) isNil
 	
 ]
 
@@ -305,6 +350,95 @@ ERLoggedPageAsAdminTest >> testAddTicketWithNonNumericPercentage [
 	self selectElementWithID: 'percentage' send: 'text'.
 	self clickElementWithID: 'acceptAddTicket'.
 	self assert: self getTextOfError equals: (self messageInvalidInputFor: 'Percentage')
+]
+
+{ #category : #'configurationTicket Tests' }
+ERLoggedPageAsAdminTest >> testAddUserAdminSuccesfull [
+	|amountOfUsers|
+	amountOfUsers := controller conference users size.
+	self moveToUserOption.
+	self pressAddUser.
+	self fillFirstName.
+	self fillLastName.
+	self fillEmail.
+	self selectRoleAdmin.
+	self fillPasswordRegister.
+	self fillConfirmPasswordRegister.
+	self pressAcceptAddUser.
+	self assert: controller conference users size equals: amountOfUsers +1.
+	self deny: (controller conference users detect: 
+		[:user| (user firstName = 'Michel') and: (user role includes: 'admin')]) isNil
+	
+]
+
+{ #category : #'configurationTicket Tests' }
+ERLoggedPageAsAdminTest >> testAddUserVoluntereStudentSuccesfull [
+	|amountOfUsers|
+	amountOfUsers := controller conference users size.
+	self moveToUserOption.
+	self pressAddUser.
+	self fillFirstName.
+	self fillLastName.
+	self fillEmail.
+	self selectRoleVoluntereStudent.
+	self fillPasswordRegister.
+	self fillConfirmPasswordRegister.
+	self pressAcceptAddUser.
+	self assert: controller conference users size equals: amountOfUsers +1.
+	self deny: (controller conference users detect: 
+		[:user| (user firstName = 'Michel') and: (user role includes: 'studentVolunter')]) isNil
+	
+]
+
+{ #category : #'configurationTicket Tests' }
+ERLoggedPageAsAdminTest >> testAddUserWithoutFillingFirstName [
+	|amountOfUsers|
+	amountOfUsers := controller conference users size.
+	self moveToUserOption.
+	self pressAddUser.
+	self fillLastName.
+	self fillEmail.
+	self selectRoleVoluntereStudent.
+	self fillPasswordRegister.
+	self fillConfirmPasswordRegister.
+	self pressAcceptAddUser.
+	self assert: controller conference users size equals: amountOfUsers .
+	self assert: self getTextOfError equals: (self messageIsRequiredFor: 'First Name')
+	
+]
+
+{ #category : #'configurationTicket Tests' }
+ERLoggedPageAsAdminTest >> testAddUserWithoutFillingLastName [
+	|amountOfUsers|
+	amountOfUsers := controller conference users size.
+	self moveToUserOption.
+	self pressAddUser.
+	self fillFirstName.
+	self fillLastName.
+	self selectRoleVoluntereStudent.
+	self fillPasswordRegister.
+	self fillConfirmPasswordRegister.
+	self pressAcceptAddUser.
+	self assert: controller conference users size equals: amountOfUsers .
+	self assert: self getTextOfError equals: (self messageIsRequiredFor: 'Email')
+	
+]
+
+{ #category : #'configurationTicket Tests' }
+ERLoggedPageAsAdminTest >> testAddUserWithoutFillingPassword [
+	|amountOfUsers|
+	amountOfUsers := controller conference users size.
+	self moveToUserOption.
+	self pressAddUser.
+	self fillFirstName.
+	self fillLastName.
+	self fillEmail.
+	self selectRoleVoluntereStudent.
+	self fillPasswordRegister.
+	self pressAcceptAddUser.
+	self assert: controller conference users size equals: amountOfUsers .
+	self assert: self getTextOfError equals: (self messageIsRequiredFor: 'Confirm Password')
+	
 ]
 
 { #category : #'configuration Admin Option Tests' }
@@ -511,6 +645,13 @@ ERLoggedPageAsAdminTest >> testPressAddTicket [
 	self moveToTicketsOption.
 	self clickElementWithID: 'addTicket'.
 	self assert: (self textOfTagName: 'h3') equals: 'Reduction Tickets'
+]
+
+{ #category : #'configurationTicket Tests' }
+ERLoggedPageAsAdminTest >> testPressAddUser [
+	self moveToUserOption.
+	self clickElementWithID: 'addUser'.
+	self assert: (self textOfTagName: 'h3') equals: 'User'
 ]
 
 { #category : #'configuration Conference Tests' }
