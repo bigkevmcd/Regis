@@ -123,15 +123,17 @@ ERContainerTab >> deleteTalk: aTalk [
 
 { #category : #actions }
 ERContainerTab >> exportInvoiceOf: groupOrAttendee [
-	self requestContext respond: [ :response |
-		|stream file |
+
+	self requestContext respond: [ :response | 
+		| stream file |
 		file := ERPDFInvoice pdfDocOf: groupOrAttendee.
-		stream := (RWBinaryOrTextStream on: String new) binary.
+		stream := (FileSystem memory / 'doc.pdf') binaryWriteStream.
 		file exportTo: stream.
 		response
-            contentType: (WAMimeType main: 'application' sub: 'pdf');
-            document: stream close; contents ;
-            attachmentWithFileName: ('invoice-', groupOrAttendee id asString, '.pdf') ]
+			contentType: (WAMimeType main: 'application' sub: 'pdf');
+			document: stream stream stream contents;
+			contents;
+			attachmentWithFileName: 'invoice-' , groupOrAttendee id asString , '.pdf' ]
 ]
 
 { #category : #tableBlock }

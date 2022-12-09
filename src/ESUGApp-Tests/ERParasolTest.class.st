@@ -33,12 +33,14 @@ ERParasolTest >> createDownloadDirectory [
 
 { #category : #actions }
 ERParasolTest >> downloadFileOf: href to: directory [
-	[ZnClient new
-   url: href;
-   downloadTo: directory.
-	(Delay forSeconds: 2) wait]
-	on: Exception 
-	do: [ self assert: false ]
+
+	[ 
+	ZnClient new
+		url: (self baseURL withoutSuffix: 'ESUG/') , href;
+		downloadTo: directory.
+	(Delay forSeconds: 2) wait ]
+		on: Exception
+		do: [ self assert: false ]
 ]
 
 { #category : #messages }
