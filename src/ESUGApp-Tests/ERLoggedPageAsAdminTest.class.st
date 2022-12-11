@@ -462,7 +462,7 @@ ERLoggedPageAsAdminTest >> testApplyReductionToAttendee [
 	self clickElementWithID: attendee id, '-applyReduction'.
 	self assert: (self textOfTagName: 'h3') equals: 'Apply Reduction Ticket'.
 	select := driver findElementByID: 'selectTickets'.
-	self assert: (select getAttribute: 'value') equals: '1'.
+	self assert: (select getProperty: 'value') equals: '1'.
 	select sendKeys: coupon ticketId .
 	self clickElementWithID: 'accept-change-affiliation'.
 	self assert: attendee paymentInformation coupon equals: coupon ticketId 
@@ -507,13 +507,12 @@ ERLoggedPageAsAdminTest >> testDeleteUserAcceptAlert [
 
 { #category : #'configuration Users Tests' }
 ERLoggedPageAsAdminTest >> testDeleteUserAdminAcceptAlert [
-	| user|
+
+	| user icon |
 	user := controller conference findUserByEmail: 'admin@esug.org'.
-	self pressOptionUsers .
-	self clickElementWithID: user id, '-delete'.
-	driver acceptAlert.
-	self assert: (self textOfElementWithID: 'tabAlert') equals: 
-	ERException adminUserDoesNotDelete messageText
+	self pressOptionUsers.
+	icon := driver findElementByID: user id , '-delete'.
+	self assert: (icon getAttribute: 'disabled') equals: 'true'
 ]
 
 { #category : #'configuration Users Tests' }
@@ -633,11 +632,14 @@ ERLoggedPageAsAdminTest >> testEditUserWithEmptyName [
 
 { #category : #'configuration Attendees Test' }
 ERLoggedPageAsAdminTest >> testIsVolunterAttendee [
-	| attendee|
+
+	| attendee user |
 	attendee := controller conference attends first.
-	self moveToAttendeeOption .
-	self clickElementWithID: attendee id, '-isVolunter'.
-	self assert: (ERAttendee find: [ :ticket | ticket id =attendee id ]) userAccount isStudent 
+	self moveToAttendeeOption.
+	self clickElementWithID: attendee id , '-isVolunter'.
+	user := (ERAttendee find: [ :ticket | ticket id = attendee id ]) userAccount.
+	1second wait.
+	self assert: user isStudent
 ]
 
 { #category : #'configurationTicket Tests' }

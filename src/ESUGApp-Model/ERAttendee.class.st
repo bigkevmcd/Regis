@@ -181,6 +181,18 @@ ERAttendee >> organizationPostal [
 	^ affiliationInformation organizationPostal 
 ]
 
+{ #category : #printing }
+ERAttendee >> printOn: aStream [
+
+	super printOn: aStream.
+
+	self userAccount firstName ifNotNil: [ :n | 
+		aStream
+			nextPutAll: ' [';
+			nextPutAll: n;
+			nextPut: $] ]
+]
+
 { #category : #deleteRole }
 ERAttendee >> removeStudentVolunterRole [
 	self userAccount isStudent ifTrue: [

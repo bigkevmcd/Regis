@@ -30,8 +30,8 @@ ERLoggedPageAsGroupManagerTest >> fillAllUserFieldsOfIndex: anIndex [
 
 { #category : #actions }
 ERLoggedPageAsGroupManagerTest >> fillAllUserFieldsWithOtherEmailOnIndex: anIndex [
-	self selectElementWithID: ('firstName', anIndex printString) send: 'register2'.
-	self selectElementWithID: ('lastName', anIndex printString) send: 'register2'.
+	self selectElementWithID: ('firstName', anIndex printString) send: 'registerTwo'.
+	self selectElementWithID: ('lastName', anIndex printString) send: 'registerTwo'.
 	self selectElementWithID: ('email', anIndex printString) send: 'register2@gmail.com'.
 	self selectElementWithID: ('passwordRegister', anIndex printString) send: '12345678'.
 	self selectElementWithID: ('confirmPasswordRegister', anIndex printString) send: '12345678'
@@ -212,12 +212,12 @@ ERLoggedPageAsGroupManagerTest >> testRegisterTwoUsersInGroup [
 	self fillAllUserFieldsOfIndex: 1.
 	self pressNextButtonUserWithIndex: 1.
 	self pressNextButtonConferenceWithIndex: 1.
-	self clickElementWithID: 'registerButton', 1 printString.
+	self clickElementWithID: 'registerButton1'.
 	self clickElementWithID: 'newUserOptionBar'.
 	self fillAllUserFieldsWithOtherEmailOnIndex: 1.
 	self pressNextButtonUserWithIndex: 1.
 	self pressNextButtonConferenceWithIndex: 1.
-	self clickElementWithID: 'registerButton', 1 printString.
+	self clickElementWithID: 'registerButton1'.
 	self assert: group listAttends size equals: cantOfAttendees + 2
 ]
 

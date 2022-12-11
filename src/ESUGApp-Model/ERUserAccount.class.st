@@ -269,6 +269,18 @@ ERUserAccount >> password: anObject [
 	password := anObject
 ]
 
+{ #category : #printing }
+ERUserAccount >> printOn: aStream [
+
+	super printOn: aStream.
+
+	self firstName ifNotNil: [ :n | 
+		aStream
+			nextPutAll: ' [';
+			nextPutAll: n;
+			nextPut: $] ]
+]
+
 { #category : #converting }
 ERUserAccount >> resetPassword [
     
