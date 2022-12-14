@@ -95,9 +95,9 @@ ERParasolTest >> setUp [
 
 { #category : #running }
 ERParasolTest >> tearDown [
-	
+
 	self deleteDownloadFolderIfExist.
-	driver ifNotNil: #quit.
+	driver ifNotNil: [ :d | BPWebDriverManagerResource current quitOrCacheDriver: d withCapabilities: self desiredDriverBrowserCapabilities ].
 	super tearDown
 ]
 
