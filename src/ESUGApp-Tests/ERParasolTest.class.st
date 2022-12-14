@@ -31,6 +31,17 @@ ERParasolTest >> createDownloadDirectory [
 		 ensureCreateDirectory
 ]
 
+{ #category : #running }
+ERParasolTest >> desiredDriverBrowserCapabilities [
+
+	| capabilities |
+	capabilities := BPChromeOptions new.
+
+	capabilities setHeadless: true.
+	capabilities addArguments: (#( 'no-sandbox' 'window-size=1920,1080' ) flag: 'Passing a window size here has no effect, as the window size is set in #setUp?'). "or: [ self isRunningHeadFullOnTravis ]"
+	^ capabilities
+]
+
 { #category : #actions }
 ERParasolTest >> downloadFileOf: href to: directory [
 
@@ -79,8 +90,7 @@ ERParasolTest >> selectElementWithID: aString1 send: aString2 [
 ERParasolTest >> setUp [
 
 	super setUp.
-	driver := BPRemoteWebDriver withCapabilities: BPChromeOptions new.
-	driver get: self baseURL
+	driver := BPWebDriverManagerResource current driverWithCapabilities: self desiredDriverBrowserCapabilities on: self baseURL
 ]
 
 { #category : #running }
