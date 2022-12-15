@@ -470,19 +470,22 @@ ERLoggedPageAsAdminTest >> testApplyReductionToAttendee [
 
 { #category : #'configuration Attendees Test' }
 ERLoggedPageAsAdminTest >> testCancelEditAttendee [
-	|attendee updateAttendee|
+
+	| attendee updateAttendee |
 	attendee := controller conference attends first.
 	self moveToAttendeeOption.
 	self selectAttendeesTab.
-	self clickElementWithID: attendee id, '-modify'.
+	self clickElementWithID: attendee id , '-modify'.
 	self clickElementWithID: 'contactInfoForm-goBackLoginButton'.
-	updateAttendee := (ERAttendee find: [:att | att id = attendee id]).
+	updateAttendee := ERAttendee find: [ :att | att id = attendee id ].
 	self assert: updateAttendee userAccount equals: attendee userAccount.
 	self assert: updateAttendee contactInformation equals: attendee contactInformation.
 	self assert: updateAttendee conferenceInformation equals: attendee conferenceInformation.
 	self assert: updateAttendee affiliationInformation equals: attendee affiliationInformation.
 	self assert: updateAttendee additionalInformation equals: attendee additionalInformation.
 	self assert: updateAttendee paymentInformation equals: attendee paymentInformation.
+	"Next line is required when using chrome headless"
+	driver acceptAlert
 ]
 
 { #category : #'configuration Invoices Tests' }
