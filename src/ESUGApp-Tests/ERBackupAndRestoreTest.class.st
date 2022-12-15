@@ -31,7 +31,7 @@ ERBackupAndRestoreTest >> testBackupAfterRegisterAttendee [
 	| filesAfterBackup filesBeforeBackup |
 	filesBeforeBackup := self filesSizeOfBackup.
 	self registerAttendee.
-	(Delay forSeconds: 2) wait.
+	self wait.
 	filesAfterBackup := self filesSizeOfBackup.
 	self assert: filesBeforeBackup < filesAfterBackup
 ]
@@ -46,9 +46,9 @@ ERBackupAndRestoreTest >> testBackupAfterRegisterAttendeeFromGroup [
 	group := self groupOfUser: user.
 	aController := ERGroupController new group: group.
 	aController addAttendee: (self class testAttendee: 'test1@gmail.com').
-	(Delay forSeconds: 2) wait.
+	self wait.
 	filesAfterBackup := self filesSizeOfBackup.
-	self assert: filesBeforeBackup < filesAfterBackup 
+	self assert: filesBeforeBackup < filesAfterBackup
 ]
 
 { #category : #tests }
@@ -57,23 +57,33 @@ ERBackupAndRestoreTest >> testBackupAfterRegisterGroupManager [
 	| filesAfterBackup filesBeforeBackup |
 	filesBeforeBackup := self filesSizeOfBackup.
 	self registerAsGroupManager.
-	(Delay forSeconds: 2) wait.
+	self wait.
 	filesAfterBackup := self filesSizeOfBackup.
-	self assert: filesBeforeBackup < filesAfterBackup 
+	self assert: filesBeforeBackup < filesAfterBackup
 ]
 
 { #category : #tests }
 ERBackupAndRestoreTest >> testRestoreData [
+
 	"This test verify that the state after restore is equal to data was removed"
 
 	| stateBefore stateAfter |
-
 	self registerAsGroupManager.
+	self wait.
 	stateBefore := ERBackupRestore new objectsToBackup.
-	(Delay forSeconds: 5) wait.
-	ESUGSetUp start.
-	(Delay forSeconds: 3) wait.
+	ESUGSetUp
+		cleanDatabase;
+		restoreData.
+	self wait.
 	stateAfter := ERBackupRestore new objectsToBackup.
-	
-	self assert: stateBefore equals: stateAfter
+
+	self assertCollection: stateBefore hasSameElements: stateAfter
+]
+
+{ #category : #accessing }
+ERBackupAndRestoreTest >> wait [
+
+	"Since the backup process is in a fork, we need to wait to ensure the backup happened."
+
+	(Delay forSeconds: 3) wait
 ]
