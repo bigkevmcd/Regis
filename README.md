@@ -50,6 +50,8 @@ You can see the registered users by logging in as admin.
 
 All the users generated automatically have as password: 12345678
 
+To execute the UI tests we are using Parasol, which is a binding to Selenium. You'll need to install selenium to be able to execute the tests. [See documentation at https://github.com/SeasideSt/Parasol](https://github.com/SeasideSt/Parasol). 
+
 ## Deploy with Docker
 
 See documentation in [Docker/README.md](Docker/README.md)
