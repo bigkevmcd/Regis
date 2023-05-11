@@ -116,14 +116,15 @@ ERContactInformation >> descriptionCity [
 
 { #category : #'magrittes-descriptions' }
 ERContactInformation >> descriptionCountry [
+
 	<magritteDescription>
 	| tmp |
 	tmp := ERAward new descriptionCountry copy
-				priority: 40;
-				cssClass: 'half';
-				id: 'contactCountry'.
+		       priority: 40;
+		       cssClass: 'half';
+		       id: 'contactCountry'.
 	self readOnly ifTrue: [ tmp beDisabled ].
-   ^ tmp yourself
+	^ tmp yourself
 ]
 
 { #category : #'magrittes-descriptions' }

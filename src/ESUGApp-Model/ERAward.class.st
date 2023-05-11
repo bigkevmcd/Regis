@@ -88,6 +88,7 @@ ERAward >> descriptionCountry [
 		options: ERAttendee countries;
 		withoutLabel: true;
 		id: 'country';
+		default: ERAttendee countries first;
 		componentClass: MDLMASelectListComponent .
 	^ tmp1 yourself
 ]
