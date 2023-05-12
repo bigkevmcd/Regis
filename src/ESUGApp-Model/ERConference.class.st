@@ -864,3 +864,8 @@ ERConference >> verifyIfTicket: ticket canApplyTo: anAttendee [
 	[ ((self attendeesForATicket: ticket except: anAttendee) size < ticket limitStrategy limit) ifTrue: [ ^ true ]
 	ifFalse: [ ERException ticketWasExceeded signal ] ]
 ]
+
+{ #category : #accessing }
+ERConference >> year [
+	^ self configuration year
+]

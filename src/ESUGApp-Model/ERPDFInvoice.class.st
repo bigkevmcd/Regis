@@ -287,47 +287,50 @@ ERPDFInvoice >> addInfoPayment: pdfPage of: user [
 
 { #category : #adding }
 ERPDFInvoice >> addTablePayment: pdfPage of: user [
+
 	| fontLegend currency showedInfo |
-	showedInfo := 'Full Registration to ESUG22'.
-	(user isKindOf: ERGroup)
-		ifTrue: [ showedInfo := user listAttends size asString, ' registrations to ESUG22' ].
-	currency :=  (128 asCharacter) asString, ' ', (user paymentAmount ifNil: [ 0 ]) asString.
-	fontLegend := PDFTimesFont size: 10pt.
-	pdfPage add: (PDFDataTableWithColumnsCaptionElement new 
-		captions: #('Description' 'Total');
-		data: (Array with: (Array with: showedInfo with: currency));
-		from: 20 mm @ 115 mm;
-		dimension: 170 mm @ 22 mm;
-		customizationBlock: [ :cell :x :y :data | 
-			y = 1 ifTrue: [
-				x = 1 ifTrue: [ cell dimension: 140 mm @ 4 mm ]
-				ifFalse: [ cell dimension: 30 mm @ 4 mm ].
-			].
-			x even ifTrue: [ cell alignment: (PDFAlignment right) ]
-		];
-		style: #dataTableWithColoredCaption;
-		yourself);
-	add: (PDFDataTableElement new
-		data: (
-			Array with: (Array with: 'Total to pay:' with: currency)
-			with: (Array with: 'Not subjected to VAT' with: '')
-			with: (Array with: 'Amounts are in Euro (EUR)' with: ''));
-		from: 20 mm @ 142 mm;
-		dimension: 170 mm @ 15 mm;
-		customizationBlock: [ :cell :x :y :data | 
-			y = 1 ifTrue: [ x = 1 ifTrue: [ cell textColor: self colorTitle; font: self fontBoldContent ] ] 
-			ifFalse: [ cell font: self fontFooter ]
-		];
-		yourself
-	);
-	add: (PDFTextElement new
-		font: fontLegend;
-		from: 22 mm @ 158 mm;
-		text: 'ESUG is a French Association of 1901 law (non-profit organization)');
-	add: (PDFTextElement new
-		font: fontLegend;
-		from: 22 mm @ 163 mm;
-		text: 'and it is not subjected to VAT, "TVA non applicable - article 293 B du CGI".').
+	showedInfo := 'Full Registration to ESUG' , self controller conference year.
+	(user isKindOf: ERGroup) ifTrue: [ showedInfo := user listAttends size asString , ' registrations to ESUG22' ].
+	currency := 128 asCharacter asString , ' ' , (user paymentAmount ifNil: [ 0 ]) asString.
+	fontLegend := PDFTimesFont size: 10 pt.
+	pdfPage
+		add: (PDFDataTableWithColumnsCaptionElement new
+				 captions: #( 'Description' 'Total' );
+				 data: (Array with: (Array with: showedInfo with: currency));
+				 from: 20 mm @ 115 mm;
+				 dimension: 170 mm @ 22 mm;
+				 customizationBlock: [ :cell :x :y :data | 
+					 y = 1 ifTrue: [ 
+							 x = 1
+								 ifTrue: [ cell dimension: 140 mm @ 4 mm ]
+								 ifFalse: [ cell dimension: 30 mm @ 4 mm ] ].
+					 x even ifTrue: [ cell alignment: PDFAlignment right ] ];
+				 style: #dataTableWithColoredCaption;
+				 yourself);
+		add: (PDFDataTableElement new
+				 data: (Array
+						  with: (Array with: 'Total to pay:' with: currency)
+						  with: (Array with: 'Not subjected to VAT' with: '')
+						  with: (Array with: 'Amounts are in Euro (EUR)' with: ''));
+				 from: 20 mm @ 142 mm;
+				 dimension: 170 mm @ 15 mm;
+				 customizationBlock: [ :cell :x :y :data | 
+					 y = 1
+						 ifTrue: [ 
+							 x = 1 ifTrue: [ 
+									 cell
+										 textColor: self colorTitle;
+										 font: self fontBoldContent ] ]
+						 ifFalse: [ cell font: self fontFooter ] ];
+				 yourself);
+		add: (PDFTextElement new
+				 font: fontLegend;
+				 from: 22 mm @ 158 mm;
+				 text: 'ESUG is a French Association of 1901 law (non-profit organization)');
+		add: (PDFTextElement new
+				 font: fontLegend;
+				 from: 22 mm @ 163 mm;
+				 text: 'and it is not subjected to VAT, "TVA non applicable - article 293 B du CGI".')
 ]
 
 { #category : #colors }
@@ -343,6 +346,11 @@ ERPDFInvoice >> colorLink [
 { #category : #colors }
 ERPDFInvoice >> colorTitle [
 	^ PDFColor r: 0 g: 0 b: 128
+]
+
+{ #category : #accessing }
+ERPDFInvoice >> controller [
+	^ controller
 ]
 
 { #category : #accessing }
