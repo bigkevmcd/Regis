@@ -167,11 +167,14 @@ ERPDFInvoice >> addInfoESUG: aPage [
 { #category : #adding }
 ERPDFInvoice >> addInfoInvoice: pdfPage of: user [
 
-	| fullname listOfPosition |
+	| fullname listOfPosition registeredName |
 	user organizationAddress2  
 		ifNotNil: [ listOfPosition := #(70 75 80 85 90 95) ]
 		ifNil: [ listOfPosition := #(70 75 nil 80 85 90) ].
+
 	fullname := (self encode: user organizationName).
+	registeredName := self encode: user lastName , ', ' , user firstName. 
+
 	pdfPage add: (PDFTextElement new
 		textColor: self colorTitle;
 		font: self fontContent;
@@ -194,6 +197,18 @@ ERPDFInvoice >> addInfoInvoice: pdfPage of: user [
 		from: 0 mm @ ((listOfPosition at: 1) + 8) mm;
 		text: fullname;
 		alignment: (PDFAlignment right));
+	add: (PDFFormattedTextElement new
+		textColor: self colorTitle;
+		font: self fontContent;
+		from: 20 mm @ 70 mm;
+		text: 'Attendee:';
+		alignment: (PDFAlignment right));
+	add: (PDFFormattedTextElement new
+		font: self fontContent;
+		from: 45 mm @ 70 mm;
+		text: registeredName;
+		alignment: (PDFAlignment right));
+
 	add: (PDFFormattedTextElement new
 		font: self fontContent;
 		dimension: 190 mm @ (listOfPosition at: 2) mm;
