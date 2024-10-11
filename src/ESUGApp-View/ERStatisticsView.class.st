@@ -47,7 +47,7 @@ ERStatisticsView >> renderParticipantsToLunchesStatisticsOn: html [
 	tab := ERDictionaryTable new
 		tableId: 'participant-to-lunches-table';
 		header: controller conference headersParticipantsToLunches;
-		rows: controller conference statisticsOfLuch.
+		rows: controller conference statisticsOfLunch.
 	self renderTable: tab withTitle: 'Participants to lunches per day' on: html
 ]
 

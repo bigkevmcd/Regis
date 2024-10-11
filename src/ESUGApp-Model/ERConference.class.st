@@ -368,7 +368,7 @@ ERConference >> exportAwards: fileName [
         streamContents: [ :out |
             | neoWriter |
             neoWriter := NeoCSVWriter on: out.
-            neoWriter writeHeader: self hearderAwards.
+            neoWriter writeHeader: self headerAwards.
             self submittedAwards
                 do: [ :each |
                     neoWriter
@@ -568,7 +568,7 @@ ERConference >> headersShirtsStatistics [
 ]
 
 { #category : #header }
-ERConference >> hearderAwards [
+ERConference >> headerAwards [
     ^ #('Award Name' 'Submitted by' 'Other Developers' 'Affiliation' 'Country' 'Dialect' 'Keywords'
     'Licence' 'Download Url' 'Demo Url' 'Submittion Date')
 ]
@@ -730,7 +730,7 @@ ERConference >> senderEmailAddress [
 ]
 
 { #category : #configurationStatistics }
-ERConference >> statisticsOfLuch [
+ERConference >> statisticsOfLunch [
     |dict|
     dict := self dictionaryForLunch.
     self attends do: [ :att |
