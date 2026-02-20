@@ -126,5 +126,5 @@ CssForLoginMDL >> updateRoot: anHtmlRoot [
 	anHtmlRoot javascript
 		url: 'https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js'.
 	anHtmlRoot stylesheet 
-		url: (WAUrl absolute:'https://code.getmdl.io/1.3.0/material.blue-red.min.css').
+		url: (WAUrl absolute:'https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.blue-red.min.css').
 ]

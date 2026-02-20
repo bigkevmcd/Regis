@@ -376,7 +376,7 @@ ERRegisterConferenceInformation >> initialize [
 	super initialize.
 	foodPreference :=  'Normal'.
 	gender :='Male'.
-	tshirtSize :='XS'.
+	tshirtSize :='XL'.
 	self attendSocialEvent: true.
 	self addedToMainList: true.
 	self addPersonToSocialDinner: false.
